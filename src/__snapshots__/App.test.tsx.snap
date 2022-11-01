@@ -38,63 +38,81 @@ Object {
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
             <div
               class="grid-cell"
               data-testid="grid__cell"
               role="button"
             >
-              <span />
+              <div>
+                <span />
+              </div>
             </div>
           </div>
           <div
@@ -163,63 +181,81 @@ Object {
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
           <div
             class="grid-cell"
             data-testid="grid__cell"
             role="button"
           >
-            <span />
+            <div>
+              <span />
+            </div>
           </div>
         </div>
         <div

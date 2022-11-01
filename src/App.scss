@@ -71,6 +71,20 @@
         justify-content: center;
         position: relative;
 
+        &.fillout {
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.25s all ease-in-out;
+            background: rgb(230, 230, 230);
+            width: 56px;
+            height: 56px;
+          }
+        }
+
         span {
           opacity: 0;
         }
@@ -79,40 +93,42 @@
           cursor: not-allowed;
         }
 
-        &::before,
-        &::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          transition: 0.25s all ease-in-out;
-          border-radius: 50%;
-        }
-
-        &.X {
+        div {
           &::before,
           &::after {
-            height: 3px;
-            border-radius: 999px;
-            background: rgb(0, 188, 100);
-            width: 20px;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.25s all ease-in-out;
+            border-radius: 50%;
           }
 
-          &::before {
-            transform: translate(-50%, -50%) rotate(45deg);
+          &.X {
+            &::before,
+            &::after {
+              height: 3px;
+              border-radius: 999px;
+              background: rgb(0, 188, 100);
+              width: 20px;
+            }
+
+            &::before {
+              transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &::after {
+              transform: translate(-50%, -50%) rotate(135deg);
+            }
           }
 
-          &::after {
-            transform: translate(-50%, -50%) rotate(135deg);
-          }
-        }
-
-        &.O {
-          &::before {
-            border: 3px solid rgb(35, 35, 35);
-            width: 12px;
-            height: 12px;
+          &.O {
+            &::before {
+              border: 3px solid rgb(35, 35, 35);
+              width: 12px;
+              height: 12px;
+            }
           }
         }
       }

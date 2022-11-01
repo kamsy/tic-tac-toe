@@ -32,11 +32,13 @@ test("clicking a box fills it with activeplayer's icon and disables it", async (
 describe("either player can win the game:", () => {
   test(`Player ${PLAYER_ONE} wins:`, async () => {
     const { gridCells } = setup();
+    const winningCombo = [0,4,8];
     [0, 1, 4, 3, 8, 5].forEach((num) => userEvent.click(gridCells[num]));
     expect(
       (await screen.findByRole("heading", { level: 2 })).textContent
     ).toMatchInlineSnapshot(`"Player X wins!🎉"`);
-    expect(screen.getByTestId("grid")).toHaveClass("disable");
+    gridCells.forEach((cell) => expect(cell).toHaveClass("disable"));
+    winningCombo.forEach((num) => expect(gridCells[num]).toHaveClass("fillout"));
   });
 
   test(`Player ${PLAYER_TWO} wins:`, async () => {
@@ -54,7 +56,7 @@ test("players are notified when it's a draw", async () => {
   expect(
     (await screen.findByRole("heading", { level: 2 })).textContent
   ).toMatchInlineSnapshot(`"Game over! Draw🤝"`);
-  expect(screen.getByTestId("grid")).toHaveClass("disable");
+  gridCells.forEach((cell) => expect(cell).toHaveClass("disable"));
 });
 
 test("can set the grid size to >= 3x3:", async () => {

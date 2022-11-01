@@ -29,7 +29,6 @@ function App() {
   }, []);
 
   const [gridSize, setGridSize] = useState<number>(defaultSize);
-
   const winningCombos: WinComboProp[] = getWinningCombs(gridSize);
   const [activePlayer, setActivePlayer] = useState<string>(PLAYER_ONE);
   const [playerPicks, setPlayerPicks] = useState<PicksProps>(defaultPicks);
@@ -40,7 +39,7 @@ function App() {
   const resetGame = () => {
     setPlayerPicks(defaultPicks);
     setGrid({});
-    setLoadedGame(null)
+    setLoadedGame(null);
     setWinner(null);
     setIsDraw(false);
     setActivePlayer(PLAYER_ONE);
@@ -77,8 +76,13 @@ function App() {
         }
         return;
       }
+
       setTimeout(() => {
         setWinner(activePlayer);
+        const gridCells = document.querySelectorAll(".grid-cell");
+        combo.forEach((num) => {
+          gridCells[+num].classList.add("fillout");
+        });
       }, 100);
     });
   };
@@ -119,7 +123,7 @@ function App() {
     const { winner, playerPicks, grid, activePlayer, gridSize } = gameToLoad;
     setLoadedGame(gameToLoad);
     setWinner(winner);
-    setIsDraw(false)
+    setIsDraw(false);
     setPlayerPicks(playerPicks);
     setGrid(grid);
     setActivePlayer(activePlayer);
@@ -152,7 +156,7 @@ function App() {
         </p>
         <div
           data-testid="grid"
-          className={cx("grid", { disable: disableBtn })}
+          className="grid"
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 56px)`,
           }}
@@ -164,14 +168,15 @@ function App() {
               <div
                 key={col}
                 className={cx("grid-cell", {
-                  disable: !!selected,
-                  [selected]: selected,
+                  disable: !!selected || disableBtn,
                 })}
                 role="button"
                 data-testid="grid__cell"
                 onClick={() => (winner ? null : handleCellClick(col))}
               >
-                <span>{selected}</span>
+                <div className={selected}>
+                  <span>{selected}</span>
+                </div>
               </div>
             );
           })}
