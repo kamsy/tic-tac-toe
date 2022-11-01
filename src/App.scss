@@ -1,0 +1,151 @@
+.App {
+  text-align: center;
+  display: flex;
+  height: calc(100vh - 100px);
+  justify-content: center;
+  padding-top: 100px;
+
+  button {
+    outline: none;
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+
+    &:not(.reset) {
+      background: rgb(0, 188, 100);
+      color: #ffffff;
+
+      &:hover {
+        background: rgb(0, 209, 122);
+      }
+    }
+
+    &.reset {
+      background-color: rgb(230, 230, 230);
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  .winner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+    margin-left: 400px;
+
+    .turn__indicator {
+      text-align: left;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      transition: 0.25s all ease-in-out;
+
+      &.disable {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      &-cell {
+        transition: 0.25s all ease-in-out;
+        border: 1px solid grey;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.disable {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .buttons__wrapper {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .form {
+      margin-bottom: 16px;
+      input {
+        outline: none;
+        box-shadow: none;
+        border-radius: 4px;
+        border: 1.5px solid #f3f4f7;
+        padding: 12px 16px;
+      }
+    }
+  }
+
+  .saved-games {
+    width: 400px;
+    height: 500px;
+    border-radius: 4px;
+    border: 1.5px solid #f3f4f7;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h3{
+      margin-top: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .games-list {
+      list-style: none;
+      height: 400px;
+      overflow: hidden auto;
+      padding: 0 0;
+      margin: 0;
+      width: 100%;
+
+      li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: 0.25s all ease-in-out;
+        height: 50px;
+        padding: 12px 16px;
+        border-radius: 4px;
+
+        .text__wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .timestamp {
+            font-size: 12px;
+          }
+        }
+
+        button {
+          display: none;
+        }
+
+        &:hover {
+          background: #f3f4f7;
+          button {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
