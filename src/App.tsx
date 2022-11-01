@@ -35,11 +35,13 @@ function App() {
   const [playerPicks, setPlayerPicks] = useState<PicksProps>(defaultPicks);
   const [grid, setGrid] = useState<StringObj>({});
   const [winner, setWinner] = useState<null | string>(null);
+  const [isDraw, setIsDraw] = useState<boolean>(false);
 
   const resetGame = () => {
     setPlayerPicks(defaultPicks);
     setGrid({});
     setWinner(null);
+    setIsDraw(false);
     setActivePlayer(PLAYER_ONE);
   };
 
@@ -65,11 +67,18 @@ function App() {
     setGrid((prev) => ({ ...prev, [col]: activePlayer }));
     winningCombos.forEach((combo) => {
       const isWinner = combo.every((choices) => newPicks.includes(choices));
-      if (isWinner) {
-        setTimeout(() => {
-          setWinner(activePlayer);
-        }, 100);
+      if (!isWinner) {
+        const keys = Object.keys(grid);
+        if (keys.length + 1 === gridSize ** 2) {
+          setTimeout(() => {
+            setIsDraw(true);
+          }, 100);
+        }
+        return;
       }
+      setTimeout(() => {
+        setWinner(activePlayer);
+      }, 100);
     });
   };
 
@@ -119,13 +128,18 @@ function App() {
 
   return (
     <div className="App">
-      {winner && (
-        <h2 className="winner"  >
-          Player {winner} wins!🎉
+      {winner || isDraw ? (
+        <h2 className="winner">
+          {winner ? `Player ${winner} wins!🎉` : "Game over! Draw🤝"}
         </h2>
-      )}
+      ) : null}
+
       <div className="game">
-        {loadedGame && <h3 data-testid='loaded__game_title'>Now playing: {loadedGame.title}</h3>}
+        {loadedGame && (
+          <h3 data-testid="loaded__game_title">
+            Now playing: {loadedGame.title}
+          </h3>
+        )}
         <form onSubmit={handleSizeUpdate} className="form">
           <input placeholder="Grid size" />
           <button>Update</button>
@@ -136,7 +150,7 @@ function App() {
         </p>
         <div
           data-testid="grid"
-          className={cx("grid", { disable: winner })}
+          className={cx("grid", { disable: winner || isDraw })}
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 56px)`,
           }}
@@ -175,7 +189,7 @@ function App() {
             <p data-testid="no__games">No saved games</p>
           ) : (
             savedGames.map(({ title, gridSize, saved_at, id }) => (
-              <li key={id} data-testid='saved__game'>
+              <li key={id} data-testid="saved__game">
                 <div className="text__wrapper">
                   <span>
                     {title} ({gridSize}x{gridSize})
