@@ -118,6 +118,7 @@ function App() {
     const { winner, playerPicks, grid, activePlayer, gridSize } = gameToLoad;
     setLoadedGame(gameToLoad);
     setWinner(winner);
+    setIsDraw(false)
     setPlayerPicks(playerPicks);
     setGrid(grid);
     setActivePlayer(activePlayer);
@@ -125,7 +126,7 @@ function App() {
   };
 
   const gridSquare = [...Array.from(Array(gridSize ** 2).keys())];
-
+  const disableBtn = !!winner || isDraw;
   return (
     <div className="App">
       {winner || isDraw ? (
@@ -150,7 +151,7 @@ function App() {
         </p>
         <div
           data-testid="grid"
-          className={cx("grid", { disable: winner || isDraw })}
+          className={cx("grid", { disable: disableBtn })}
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 56px)`,
           }}
@@ -163,12 +164,13 @@ function App() {
                 key={col}
                 className={cx("grid-cell", {
                   disable: !!selected,
+                  [selected]: selected,
                 })}
                 role="button"
                 data-testid="grid__cell"
                 onClick={() => (winner ? null : handleCellClick(col))}
               >
-                {selected}
+                <span>{selected}</span>
               </div>
             );
           })}
@@ -178,7 +180,9 @@ function App() {
           <button onClick={resetGame} className="reset">
             Reset
           </button>
-          <button onClick={saveGame}>Save game</button>
+          <button disabled={disableBtn} onClick={saveGame}>
+            Save game
+          </button>
         </div>
       </div>
 
