@@ -40,6 +40,7 @@ function App() {
   const resetGame = () => {
     setPlayerPicks(defaultPicks);
     setGrid({});
+    setLoadedGame(null)
     setWinner(null);
     setIsDraw(false);
     setActivePlayer(PLAYER_ONE);
