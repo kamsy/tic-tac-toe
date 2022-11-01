@@ -48,6 +48,15 @@ describe("either player can win the game:", () => {
   });
 });
 
+test("players are notified when it's a draw", async () => {
+  const { gridCells } = setup();
+  [0, 1, 2, 6, 7, 8, 3, 4, 5].forEach((num) => userEvent.click(gridCells[num]));
+  expect(
+    (await screen.findByRole("heading", { level: 2 })).textContent
+  ).toMatchInlineSnapshot(`"Game over! Draw🤝"`);
+  expect(screen.getByTestId("grid")).toHaveClass("disable");
+});
+
 test("can set the grid size to >= 3x3:", async () => {
   render(<App />);
   const gridCells = screen.getAllByTestId("grid__cell");
