@@ -115,26 +115,33 @@ function App() {
     setGridSize(gridSize);
   };
 
-  const gridSquare = gridSize ** 2;
+  const gridSquare = [...Array.from(Array(gridSize ** 2).keys())];
 
   return (
     <div className="App">
-      {winner && <h2 className="winner">Player {winner} wins!🎉</h2>}
+      {winner && (
+        <h2 className="winner"  >
+          Player {winner} wins!🎉
+        </h2>
+      )}
       <div className="game">
-        {loadedGame && <h3>Now playing: {loadedGame.title}</h3>}
+        {loadedGame && <h3 data-testid='loaded__game_title'>Now playing: {loadedGame.title}</h3>}
         <form onSubmit={handleSizeUpdate} className="form">
           <input placeholder="Grid size" />
           <button>Update</button>
         </form>
 
-        <p className="turn__indicator">Turn {activePlayer}</p>
+        <p className="turn__indicator" data-testid="turn__indicator">
+          Turn {activePlayer}
+        </p>
         <div
+          data-testid="grid"
           className={cx("grid", { disable: winner })}
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 56px)`,
           }}
         >
-          {[...Array.from(Array(gridSquare).keys())].map((key) => {
+          {gridSquare.map((key) => {
             const col = key.toString();
             const selected = grid[col];
             return (
@@ -144,6 +151,7 @@ function App() {
                   disable: !!selected,
                 })}
                 role="button"
+                data-testid="grid__cell"
                 onClick={() => (winner ? null : handleCellClick(col))}
               >
                 {selected}
@@ -164,10 +172,10 @@ function App() {
         <h3>Saved games</h3>
         <ul className="games-list">
           {!savedGames.length ? (
-            <p>No saved games</p>
+            <p data-testid="no__games">No saved games</p>
           ) : (
             savedGames.map(({ title, gridSize, saved_at, id }) => (
-              <li key={id}>
+              <li key={id} data-testid='saved__game'>
                 <div className="text__wrapper">
                   <span>
                     {title} ({gridSize}x{gridSize})
